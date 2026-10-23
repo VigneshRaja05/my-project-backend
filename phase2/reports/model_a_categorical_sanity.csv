@@ -1,0 +1,5 @@
+feature,unique_values,missing,top_value
+sector,10,0,Energy
+loan_type,5,0,term_loan
+collateral,3,0,secured
+initial_rating,7,0,BBB

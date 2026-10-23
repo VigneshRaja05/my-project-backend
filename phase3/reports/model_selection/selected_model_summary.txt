@@ -1,0 +1,16 @@
+MSME LOAN RISK PROJECT - MODEL SELECTION
+============================================================
+
+Selected models: Gradient Boosting for all three tasks.
+Selection criterion: validation PR-AUC.
+Final test results are reported without further tuning.
+
+      task             model  test_rows  test_roc_auc  test_pr_auc  validation_threshold                            purpose                                     selection_basis                  dataset_note                          threshold_source
+   model_a Gradient Boosting      15000        0.7881       0.4266                0.1983                   Origination risk Highest validation PR-AUC among baseline candidates Synthetic credit-risk dataset Validation set; not optimized on test set
+model_b_3m Gradient Boosting       7804        0.8160       0.6625                0.2338 Early warning using first 3 months Highest validation PR-AUC among baseline candidates Synthetic credit-risk dataset Validation set; not optimized on test set
+model_b_6m Gradient Boosting       7667        0.8216       0.6617                0.3646 Early warning using first 6 months Highest validation PR-AUC among baseline candidates Synthetic credit-risk dataset Validation set; not optimized on test set
+
+Limitations:
+- Dataset is synthetic, not verified Indian MSME loan data.
+- Predicted scores are not automatically calibrated probabilities.
+- Thresholds are prototype operating points, not lending policies.

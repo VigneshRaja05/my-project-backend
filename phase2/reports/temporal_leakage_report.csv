@@ -1,0 +1,6 @@
+metric,count,percentage
+total_defaulted_loans,6950,100.0
+defaults_within_3_months,310,4.460431654676259
+defaults_after_3_months,6640,95.53956834532374
+defaults_within_6_months,768,11.050359712230216
+defaults_after_6_months,6182,88.94964028776978

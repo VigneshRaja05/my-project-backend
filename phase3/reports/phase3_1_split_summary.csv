@@ -1,0 +1,4 @@
+dataset,rows,train_rows,validation_rows,test_rows,raw_features,processed_features,categorical_features,numerical_features,target
+model_a,50000,28000,7000,15000,11,32,4,7,defaulted
+model_b_3m,26012,14566,3642,7804,33,56,4,29,early_warning_target_3m
+model_b_6m,25554,14309,3578,7667,33,56,4,29,early_warning_target_6m

@@ -1,0 +1,5 @@
+dataset,target,class,count,percentage
+3M,early_warning_target_3m,0,19372,74.47332000615101
+3M,early_warning_target_3m,1,6640,25.526679993848994
+6M,early_warning_target_6m,0,19372,75.80809266651013
+6M,early_warning_target_6m,1,6182,24.191907333489866

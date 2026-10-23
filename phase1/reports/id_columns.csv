@@ -1,0 +1,4 @@
+dataset,column,unique_values,rows,unique_percentage
+loan_portfolio,loan_id,50000,50000,100.0
+payment_history,loan_id,26322,1212815,2.1703
+credit_ratings,issuer_id,2000,17939,11.1489

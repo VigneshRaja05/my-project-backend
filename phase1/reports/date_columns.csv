@@ -1,0 +1,11 @@
+dataset,column,dtype,non_null,unique_values
+loan_portfolio,origination_date,object,50000,108
+loan_portfolio,maturity_date,object,50000,109
+loan_portfolio,maturity_months,int64,50000,7
+loan_portfolio,default_date,object,6950,203
+loan_portfolio,survival_months,int64,50000,117
+payment_history,month_on_book,int64,1212815,120
+payment_history,payment_date,object,1212815,227
+credit_ratings,year,int64,17939,10
+portfolio_metrics,date,object,120,120
+vintage_analysis,months_on_books,int64,2160,60

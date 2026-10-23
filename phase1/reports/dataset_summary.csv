@@ -1,0 +1,8 @@
+dataset,rows,columns,memory_mb,duplicate_rows,missing_cells,missing_percentage
+loan_portfolio,50000,24,26.8,0,129150,10.7625
+payment_history,1212815,13,290.17,0,965721,6.1251
+credit_ratings,17939,9,4.36,0,0,0.0
+macro_stress_scenarios,60,16,0.01,0,0,0.0
+portfolio_metrics,120,16,0.02,0,0,0.0
+vintage_analysis,2160,9,0.25,0,0,0.0
+payment_history_dictionary,13,3,0.0,0,0,0.0

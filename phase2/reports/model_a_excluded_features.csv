@@ -1,0 +1,11 @@
+feature,decision,reason
+loan_id,EXCLUDE,Identifier only
+default_date,EXCLUDE,Post-outcome information / leakage
+survival_months,EXCLUDE,Outcome-period information / leakage
+recovery_rate,EXCLUDE,Post-default information
+loss_given_default,EXCLUDE,Post-default information
+pd_annual,EXCLUDE,Existing PD estimate; reserved for benchmark
+lgd,EXCLUDE,Derived risk-management quantity
+el,EXCLUDE,Derived expected-loss quantity
+unexpected_loss,EXCLUDE,Derived risk quantity
+rwa,EXCLUDE,Derived risk-weighted asset quantity

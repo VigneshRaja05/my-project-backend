@@ -1,0 +1,27 @@
+feature,source,decision,reason,model
+sector,loan_portfolio,KEEP,Sector-level risk information,A + B
+loan_type,loan_portfolio,KEEP,Loan characteristics,A + B
+collateral,loan_portfolio,KEEP,Collateral information available at origination,A + B
+initial_rating,loan_portfolio,KEEP,Initial credit assessment,A + B
+credit_score,loan_portfolio,KEEP,Credit quality indicator,A + B
+ead,loan_portfolio,KEEP,Exposure at origination,A + B
+coupon_rate,loan_portfolio,KEEP,Loan pricing characteristic,A + B
+leverage,loan_portfolio,KEEP,Financial leverage indicator,A + B
+interest_coverage,loan_portfolio,KEEP,Debt servicing capacity indicator,A + B
+debt_to_equity,loan_portfolio,KEEP,Capital structure indicator,A + B
+maturity_months,loan_portfolio,KEEP,Loan term information,A + B
+loan_id,loan_portfolio,REMOVE,Identifier only,None
+default_date,loan_portfolio,REMOVE,Post-outcome information / target leakage,None
+survival_months,loan_portfolio,REMOVE,Outcome-period information / target leakage,None
+recovery_rate,loan_portfolio,REMOVE,Post-default information,None
+loss_given_default,loan_portfolio,REMOVE,Post-default information,None
+pd_annual,loan_portfolio,EXCLUDE_INITIAL,Existing probability-of-default estimate; investigate as benchmark,Benchmark
+lgd,loan_portfolio,EXCLUDE_INITIAL,Risk-management derived quantity; investigate separately,Analysis
+el,loan_portfolio,EXCLUDE_INITIAL,Derived expected-loss measure; avoid circular modelling,Analysis
+unexpected_loss,loan_portfolio,EXCLUDE_INITIAL,Derived risk measure,Analysis
+rwa,loan_portfolio,EXCLUDE_INITIAL,Derived risk-weighted asset measure,Analysis
+payment_behaviour_features,payment_history,ENGINEER,Create early-warning indicators using only first N months,B
+macro_stress_features,macro_stress_scenarios,ANALYSIS,Use for economic stress testing,Stress Testing
+rating_migration,credit_ratings,ANALYSIS,Use for credit deterioration analysis,Analysis
+vintage_features,vintage_analysis,ANALYSIS,Use for cohort/default analysis,Analysis
+portfolio_metrics,portfolio_metrics,ANALYSIS,Portfolio-level risk analysis,Analysis

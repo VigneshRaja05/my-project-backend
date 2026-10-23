@@ -1,0 +1,4 @@
+dataset,rows,coverage_percentage
+loan_portfolio,50000,100.0
+model_b_3m,26322,52.644000000000005
+model_b_6m,26322,52.644000000000005

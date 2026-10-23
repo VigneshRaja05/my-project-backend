@@ -1,0 +1,7 @@
+dataset,split,class,count,percentage
+model_b_6m,train,0,10848,75.81242574603397
+model_b_6m,train,1,3461,24.187574253966034
+model_b_6m,validation,0,2712,75.79653437674678
+model_b_6m,validation,1,866,24.203465623253216
+model_b_6m,test,0,5812,75.8053997652276
+model_b_6m,test,1,1855,24.194600234772402

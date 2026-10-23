@@ -1,0 +1,8 @@
+dataset,total_rows,duplicate_rows,duplicate_percentage
+loan_portfolio,50000,0,0.0
+payment_history,1212815,0,0.0
+credit_ratings,17939,0,0.0
+macro_stress_scenarios,60,0,0.0
+portfolio_metrics,120,0,0.0
+vintage_analysis,2160,0,0.0
+payment_history_dictionary,13,0,0.0

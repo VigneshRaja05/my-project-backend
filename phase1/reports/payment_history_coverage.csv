@@ -1,0 +1,4 @@
+metric,value
+total_loans,50000.0
+loans_with_payment_history,26322.0
+coverage_percentage,52.644000000000005

@@ -1,0 +1,3 @@
+dataset,observation_window_months,early_defaults_excluded,final_rows,original_rows,retention_percentage
+3M,3,310,26012,26322,98.82227794240559
+6M,6,768,25554,26322,97.08228857989515

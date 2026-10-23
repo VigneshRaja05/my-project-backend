@@ -1,0 +1,13 @@
+feature,type,role
+sector,categorical,predictor
+loan_type,categorical,predictor
+collateral,categorical,predictor
+initial_rating,categorical,predictor
+maturity_months,numerical,predictor
+credit_score,numerical,predictor
+ead,numerical,predictor
+coupon_rate,numerical,predictor
+leverage,numerical,predictor
+interest_coverage,numerical,predictor
+debt_to_equity,numerical,predictor
+defaulted,binary,target

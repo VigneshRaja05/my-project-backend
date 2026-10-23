@@ -1,0 +1,14 @@
+feature,missing_count,missing_percentage
+loan_id,0,0.0
+sector,0,0.0
+loan_type,0,0.0
+collateral,0,0.0
+initial_rating,0,0.0
+maturity_months,0,0.0
+credit_score,0,0.0
+ead,0,0.0
+coupon_rate,0,0.0
+leverage,0,0.0
+interest_coverage,0,0.0
+debt_to_equity,0,0.0
+defaulted,0,0.0

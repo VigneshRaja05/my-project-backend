@@ -1,0 +1,149 @@
+from pathlib import Path
+
+import joblib
+import pandas as pd
+
+from prediction_service import (
+    BUNDLE_FILES,
+    BUNDLE_DIR,
+    PredictionInputError,
+    _get_column_groups,
+    predict_risk,
+)
+
+
+ROOT = Path(__file__).resolve().parent.parent
+
+DATASETS = {
+    "origination": (
+        ROOT / "data/processed/model_a_origination_dataset.parquet"
+    ),
+    "early_warning_3m": (
+        ROOT / "data/processed/model_b_final_early_warning_3m.parquet"
+    ),
+    "early_warning_6m": (
+        ROOT / "data/processed/model_b_final_early_warning_6m.parquet"
+    ),
+}
+
+
+def get_sample(task):
+    bundle = joblib.load(BUNDLE_DIR / BUNDLE_FILES[task])
+    df = pd.read_parquet(DATASETS[task])
+
+    required = bundle["required_columns"]
+
+    missing = [c for c in required if c not in df.columns]
+    if missing:
+        raise AssertionError(f"{task}: dataset columns missing: {missing}")
+
+    # Find a row with no missing values when possible.
+    sample_df = df[required].dropna()
+
+    if sample_df.empty:
+        sample_df = df[required]
+
+    sample = sample_df.iloc[0].to_dict()
+    return bundle, sample
+
+
+def expect_rejected(label, task, bad_input):
+    try:
+        predict_risk(task, bad_input)
+    except PredictionInputError as exc:
+        print(f"PASS - {label}: {exc}")
+        return
+
+    raise AssertionError(f"FAIL - {label}: invalid input was accepted")
+
+
+def main():
+    print("=" * 65)
+    print("PHASE 3.6 - SERVICE VALIDATION TESTS")
+    print("=" * 65)
+
+    for task in DATASETS:
+        print(f"\nTesting task: {task}")
+
+        bundle, sample = get_sample(task)
+
+        # 1. Valid prediction
+        result = predict_risk(task, sample)
+
+        assert 0 <= result["predicted_score"] <= 1
+        assert result["predicted_class"] in (0, 1)
+        assert result["task"] == task
+
+        print(
+            "PASS - Valid input produced score:",
+            result["predicted_score"],
+        )
+
+        # 2. Missing field
+        bad_input = sample.copy()
+        bad_input.pop(bundle["required_columns"][0])
+
+        expect_rejected(
+            "Missing required field",
+            task,
+            bad_input,
+        )
+
+        # 3. Unexpected field
+        bad_input = sample.copy()
+        bad_input["unexpected_test_field"] = 123
+
+        expect_rejected(
+            "Unexpected field",
+            task,
+            bad_input,
+        )
+
+        # 4. Wrong numeric type
+        preprocessor = bundle["pipeline"].named_steps["preprocessor"]
+        numeric_columns, _ = _get_column_groups(preprocessor)
+
+        numeric_field = next(
+            (c for c in bundle["required_columns"]
+             if c in numeric_columns),
+            None,
+        )
+
+        if numeric_field is not None:
+            bad_input = sample.copy()
+            bad_input[numeric_field] = "not-a-number"
+
+            expect_rejected(
+                f"Invalid numeric field ({numeric_field})",
+                task,
+                bad_input,
+            )
+            required_response_fields = {
+                "task",
+                "purpose",
+                "predicted_score",
+                "validation_threshold",
+                "predicted_class",
+                "interpretation",
+                "score_note",
+            }
+
+            assert required_response_fields.issubset(result.keys())
+            assert isinstance(result["predicted_score"], float)
+            assert isinstance(result["predicted_class"], int)
+
+            print("PASS - Prediction response schema")
+
+    # 5. Unknown task
+    try:
+        predict_risk("unknown_task", {})
+    except PredictionInputError:
+        print("\nPASS - Unknown task rejected")
+    else:
+        raise AssertionError("Unknown task was accepted")
+
+    print("\nAll Phase 3.6 service validation tests passed.")
+
+
+if __name__ == "__main__":
+    main()

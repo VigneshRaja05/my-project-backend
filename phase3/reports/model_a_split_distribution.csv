@@ -1,0 +1,7 @@
+dataset,split,class,count,percentage
+model_a,train,0,24108,86.1
+model_a,train,1,3892,13.900000000000002
+model_a,validation,0,6027,86.1
+model_a,validation,1,973,13.900000000000002
+model_a,test,0,12915,86.1
+model_a,test,1,2085,13.900000000000002
